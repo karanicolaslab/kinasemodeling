@@ -14,7 +14,7 @@ def openmm_minimize(pdb_filename, pdbname, out_folder='minimized', gpu=False, so
     records are supplied.
     """
     # Initialize forcefield with small molecule capabilities
-    forcefield = ForceField('gaff.xml','tip3p.xml','amber99sbildn.xml')
+    forcefield = ForceField('data/gaff.xml','tip3p.xml','amber99sbildn.xml')
     forcefield.registerTemplateGenerator(gaffTemplateGenerator)
 
     # Use modeller to remove unwanted residues
