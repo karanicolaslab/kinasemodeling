@@ -59,8 +59,8 @@ if __name__ == "__main__":
     #------Cleaning and minimizing with openmm------#
 
     # Running through refined structures and seeing if they work
-    refine_pdbs_location = None
-    refine_pdbs = None
+    refine_pdbs_location = 'pdb'
+    refine_pdbs = 'minimize_test.pdb'
     for filename, pdb in zip(refine_pdbs_location, refine_pdbs):
         logging.info('Refining structure {0}'.format(pdb))
         try:
