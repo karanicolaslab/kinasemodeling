@@ -8,6 +8,17 @@ import os
 # Written by G. A. Ross, S. K. Albanese, J. Gao, K. Palani
 
 #------Functions used to clean and minimizing with openmm------#
+def get_upper_location(pdb_location, back=2):
+    """
+    Get the path of the directory that's up from the path specified from pdb_location.
+    """
+    path = pdb_location.split('/')[0:-back]
+    upper_path = ''
+    for location in path:
+        upper_path += location + '/'
+    return upper_path
+
+
 def openmm_minimize(pdb_filename, pdbname, out_folder='minimized', gpu=False, solvate=False):
     """
     Minimize a supplied system with openmm. Can handle small molecules as long as CONECT
@@ -59,12 +70,13 @@ if __name__ == "__main__":
     #------Cleaning and minimizing with openmm------#
 
     # Running through refined structures and seeing if they work
-    refine_pdbs_location = 'pdb'
-    refine_pdbs = 'minimize_test.pdb'
-    for filename, pdb in zip(refine_pdbs_location, refine_pdbs):
+    filelist = ['./data/pdb/minimize_test.pdb']
+    filename= './data/pdb/minimize_test.pdb'
+    pdb = 'minimize_test.pdb'
+    for file in filelist:
         logging.info('Refining structure {0}'.format(pdb))
         try:
-            openmm_minimize(filename, pdb, out_folder='minimized', gpu=True, solvate=False)
+            openmm_minimize(filename, pdb, out_folder='minimized', gpu=False, solvate=False)
             logging.info('Structure {0} COMPLETED.'.format(pdb))
             logging.info('Original file located in {0}'.format(pdb, filename))
             logging.info('-----------------------------')
